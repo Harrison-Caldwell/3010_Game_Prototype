@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 
     public float speed = 12f;
     public float gravity = -9.81f;
-    public float jumpHeight = 3f;
+    public float jumpHeight = 2.5f;
     public TextMeshProUGUI countText;
     public GameObject WinObject;
 
@@ -62,6 +62,8 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+
+
         if (other.gameObject.CompareTag("Collect"))
         {
             other.gameObject.SetActive(false);
