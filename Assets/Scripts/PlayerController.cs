@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public float jumpHeight = 2.5f;
     public TextMeshProUGUI countText;
     public GameObject WinObject;
+    public GameObject Player;
+    public GameObject RespawnPoint01;
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
@@ -27,7 +29,6 @@ public class PlayerController : MonoBehaviour
         count = 0;
         SetCountText ();
         WinObject.SetActive(false);
-
     }
     
     
@@ -47,14 +48,21 @@ public class PlayerController : MonoBehaviour
 
         controller.Move(move * speed * Time.deltaTime);
 
+
         if(Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            
         }
 
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+
+        if(velocity.y <= -50f)
+        {
+            velocity.y = -50f;
+        }
 
 
 
@@ -62,8 +70,6 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-
-
         if (other.gameObject.CompareTag("Collect"))
         {
             other.gameObject.SetActive(false);
@@ -71,6 +77,11 @@ public class PlayerController : MonoBehaviour
             count = count + 1;
 
             SetCountText ();
+        }
+
+        if (other.gameObject.CompareTag("Death"))
+        {
+            Player.transform.position = RespawnPoint01.transform.position;
         }
 
         if (other.gameObject.CompareTag("Finish"))    

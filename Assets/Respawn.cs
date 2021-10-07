@@ -5,16 +5,17 @@ using UnityEngine;
 public class Respawn : MonoBehaviour
 {
     public GameObject Player;
-    public GameObject respawnPoint01;
+    public GameObject RespawnPoint01;
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("player hit box");
-        Debug.Log(Player.transform.position);
-        Debug.Log(respawnPoint01.transform.position);
-        Player.transform.position = respawnPoint01.transform.position;
-        Debug.Log(Player.transform.position);
-        Debug.Log(respawnPoint01.transform.position);
+        Debug.Log(other.name);
+
+        //Debug.Log(Player.transform.position);
+        //Debug.Log(RespawnPoint01.transform.position);
+        other.transform.position = RespawnPoint01.transform.position;
+        //Debug.Log(Player.transform.position);
+        //Debug.Log(RespawnPoint01.transform.position);
     }
 
 
