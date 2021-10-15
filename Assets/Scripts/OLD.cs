@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public GameObject WinObject;
     public GameObject Player;
     public GameObject RespawnPoint01;
+    
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
@@ -24,16 +25,19 @@ public class PlayerController : MonoBehaviour
     Vector3 velocity;
     bool isGrounded;
     // Update is called once per frame
+    
     void Start()
     {
         count = 0;
         SetCountText ();
         WinObject.SetActive(false);
     }
+
     
     
     void Update()
     {
+
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if(isGrounded && velocity.y < 0)
@@ -66,7 +70,13 @@ public class PlayerController : MonoBehaviour
 
 
 
+
+
     }
+    
+
+
+
 
     void OnTriggerEnter(Collider other)
     {
@@ -76,18 +86,19 @@ public class PlayerController : MonoBehaviour
 
             count = count + 1;
 
-            SetCountText ();
+            SetCountText();
         }
 
         if (other.gameObject.CompareTag("Death"))
         {
-            Player.transform.position = RespawnPoint01.transform.position;
+            
         }
 
-        if (other.gameObject.CompareTag("Finish"))    
-        {
-            other.gameObject.SetActive(false);
-        }
+
+
+
+
+
     }
 
     void SetCountText()
@@ -98,6 +109,14 @@ public class PlayerController : MonoBehaviour
         {
             WinObject.SetActive(true);
         }
-        
+
     }
+
+
+
+
+
+
+
+
 }
