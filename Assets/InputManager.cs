@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class InputManager : MonoBehaviour
 {
@@ -14,8 +15,19 @@ public class InputManager : MonoBehaviour
 
     Vector2 horizontalInput;
     Vector2 mouseInput;
-    
 
+    public TextMeshProUGUI countText;
+    public GameObject winTextObject;
+
+    private int count;
+    
+    private void start()
+    {
+        count = 0;
+        winTextObject.SetActive(false);
+        SetCountText();
+        
+    }
     
 
 
@@ -48,6 +60,26 @@ public class InputManager : MonoBehaviour
     private void OnDestroy()
     {
         controls.Disable();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Collect"))
+        {
+            other.gameObject.SetActive(false);
+            count = count + 1;
+            SetCountText();
+        }
+    }
+
+    void SetCountText()
+    {
+        countText.text = "Count: " + count.ToString();
+
+        if (count >= 5)
+        {
+            winTextObject.SetActive(true);
+        }
     }
 
 
