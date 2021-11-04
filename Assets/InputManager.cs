@@ -25,8 +25,8 @@ public class InputManager : MonoBehaviour
     private void start()
     {
         count = 0;
-        winTextObject.SetActive(false);
         SetCountText();
+        winTextObject.SetActive(false);
         
     }
     
