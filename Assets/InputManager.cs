@@ -18,6 +18,7 @@ public class InputManager : MonoBehaviour
 
     public TextMeshProUGUI countText;
     public GameObject winTextObject;
+    public GameObject RespawnPoint01;
 
     private int count;
     
@@ -70,6 +71,7 @@ public class InputManager : MonoBehaviour
             count = count + 1;
             SetCountText();
         }
+
     }
 
     void SetCountText()
@@ -81,6 +83,7 @@ public class InputManager : MonoBehaviour
             winTextObject.SetActive(true);
         }
     }
+
 
 
 
